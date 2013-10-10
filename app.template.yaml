@@ -1,4 +1,4 @@
-application: your-application-id
+application: Final Project
 version: master
 runtime: python27
 api_version: 1
