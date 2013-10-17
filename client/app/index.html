@@ -1,17 +1,20 @@
-<html><head>
-        <title>Online Thesis Manager</title>
+<html>
+    <head>
+        <title>Online Thesis Library</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <style type="text/css"></style></head>
-    <body style="" cz-shortcut-listen="true">
-	<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
+    </head>
+    <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=520243734709082";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -20,36 +23,39 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="javascript:void(0)">Thesis Manager</a>
+                    <a class="navbar-brand" href="javascript:void(0)">Thesis Management System</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav menu-crud">
-                        <li class="menu-create item"><a href="javascript:void(0)">Create New</a></li>
-                        <li class="menu-list item"><a href="javascript:void(0)">Show All</a></li>
+                        <li class='menu-create item'><a href="javascript:void(0)">Create New</a></li>
+                        <li class='menu-list item'><a href="javascript:void(0)">Show All</a></li>
                     </ul>
+
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="menu-loading hidden"><a href="#">Loading...</a></li>
+                        <li class='menu-loading'><a href="#">Loading...</a></li>
                         <li class="menu-user dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="user-email">test@example.com</span> <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='user-email'></span> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/api/logout?url=/" class="btn-logout">Logout</a></li>
-                                <li><a href="#">About</a></li>
+                                <li><a href="#" class='btn-logout'>Logout</a></li>
+                                <li ><a href="#">About</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <a href="/api/login?url=/" class="btn btn-primary btn-login navbar-btn navbar-right hidden">Log in</a>
-                    </div>
+                    <a href='#' class="btn btn-primary btn-login navbar-btn navbar-right">Log in</a>
                     <form class="navbar-form navbar-right form-search" role="search" _lpchecked="1">
                         <div class="form-group">
                           <input type="text" class="form-control search-input" placeholder="Search">
                         </div>
                       </form>
+                    </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row app-content"></div>
+            <div class='container'>
+
+                <div class='row app-content'>
+                </div>
             </div>
-        
+        </div>
 
         <!-- scripts -->
         <!-- =================== -->
@@ -64,12 +70,14 @@
         <!-- templates -->
         <!-- =================== -->
         <script id="tpl-thesis-list" type="text/x-handlebars-template">
-            <div class='col-md-7'>
+            <div id = "viewAll" class='col-md-12'>
                 <table class='table table-hover'>
                     <thead>
                         <tr>
                             <th>Year</th>
                             <th>Title</th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -84,17 +92,16 @@
                 <td>{{Year}}</td>
                 <td>{{Title}}</td>
                 <td>
-                <a href='javascript:void(0)' class='btn-view'>View</a> &nbsp;
-                <a href='javascript:void(0)' class='btn-edit'>Edit</a> &nbsp;
-                <a href='javascript:void(0)' class='btn-view'>Delete</a> &nbsp;
-                
+                    <a href='javascript:void(0)' class='btn-view'>View</a> &nbsp;
+                    <a href='javascript:void(0)' class='btn-edit'>Edit</a> &nbsp;
+                    <a href='javascript:void(0)' class='btn-delete'>Delete</a> &nbsp;
                 </td>
             </tr>
         </script>
 
 
         <script id="tpl-thesis-form" type="text/x-handlebars-template">
-            <div class='col-md-7 thesis-form'>
+            <div id= "newform" class='col-md-12 thesis-form'>
                 <form role="form">
                     <div class="form-group">
                         <label for="year-input">Year</label>
@@ -108,38 +115,39 @@
                     </div>
                     <div class="form-group">
                         <label for="tite-input">Title</label>
-                        <input id='title-input' type="text" class="form-control" name='Title' placeholder="Enter title.." value='{{Title}}'>
+                        <input id='title-input' type="text" class="form-control" name='Title' placeholder="Enter Title.." value='{{Title}}'>
                     </div>
                     <div class="form-group">
-                        <label for="subtite-input">Subtitle</label>
-                        <input id='subtitle-input' type="text" class="form-control" name='Subtitle' placeholder="Enter subtitle.." value='{{Subtitle}}'>
+                        <label for="subtitle-input">Subtitle</label>
+                        <input id='subtitle-input' type="text" class="form-control" name='Subtitle' placeholder="Enter Subtitle.." value='{{Subtitle}}'>
                     </div>
+
                     <div class="form-group">
                         <label for="description-input">Description</label>
-                        <textarea id='description-input' name='Description' class="form-control" rows="3">{{Description}}</textarea>
+                        <textarea id='description-input' name='Description' placeholder="Enter Description..." class="form-control" rows="5">{{Description}}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
                     {{#if Id}}
-                    <button class="btn btn-default">Delete</button>
+                        <input id='subtitle-input' type="text" style='display:none;' name='Id' value='{{Id}}'>
+                        <button class="btn-cancel btn btn-default">Cancel</button>
                     {{/if}}
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </script>
-		<script id="tpl-thesis-view-item" type="text/x-handlebars-template">
-			<h1>{{Title}} ({{Year}})</h1>
-			<h3>{{Subtitle}}</h3><br>
 
- 
-              <div class="fb-like" data-href="https://alan-gutierrez.appspot.com/-{{Id}}" data-colorscheme="light" data-layout="standard" data-action="like" data-show-faces="true" data-send="false"></div>
+
+        <script id="tpl-thesis-detail" type="text/x-handlebars-template">
+            <div id = "left">
+                <h1>{{Title}} ({{Year}})</h1>
+            <h3>{{Subtitle}}</h3><br>
                  <hr>
                  <p>{{Description }}</p>
-                 <hr>
-			
-			<div class="fb-comments" data-href="localhost:8080/thesis-{{Id}}" data-colorscheme="light" data-numposts="5" data-width="600">
-			</div>
+               <div class="fb-like" data-href="https://alan-gutierrez.appspot.com/thesis-{{Id}}" data-colorscheme="light" data-layout="standard" data-action="like" data-show-faces="true" data-send="false"></div></p>
+                <hr>
+                <div class="fb-comments" data-href="https://alan-gutierrez.appspot.com/thesis-{{Id}}"  data-width="500"></div>
+            </div>
         </script>
 
-    
+    </body>
+</html>
 
-
-</body></html>
